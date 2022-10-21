@@ -5,8 +5,8 @@ import TodoList from './Components/TodoList';
 
 function App() {
   const [inputText, setInputText] = useState("")
-  const [todos, setTodos] = useState([])
   const [status, setStatus] = useState("all")
+  const [todos, setTodos] = useState(() => JSON.parse(localStorage.getItem("todos")) !==null ? JSON.parse(localStorage.getItem("todos")) : []) 
   const [filteredTodos, setFilteredTodos] = useState([])
 
 
@@ -37,10 +37,7 @@ function App() {
   }, [todos])
   
 
-  useEffect(() => {
-    const localTodos = JSON.parse(localStorage.getItem("todos"));
-    setTodos(localTodos);
-  }, []);
+
 
   return (
     <div className="App">
